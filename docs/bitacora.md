@@ -1,3 +1,3 @@
 - Análisis de requisitos y del diseño original (PDF).
 - Mockups: navegación, home con globo, página país, favoritos, comparar.
-- Estructura inicial del proyecto.
+- Estructura inicial del proyecto. 30/10/2026
