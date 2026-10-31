@@ -19,8 +19,9 @@
 - Estructura inicial del proyecto y ramas main / dev y feature/html.
 
 ### 31/10/2026
-- ...
-
+- Estructura HTML semántica: head, header, 4 vistas (inicio, país, comparar, favoritos) y footer.
+- Decisiones: estrella ★ para favoritos, «Mis favoritos» en toda la interfaz.
+- Retraso de medio día respecto al plan: el CSS pasa a esta tarde/mañana.
 
 
 ### 01/11/2026
