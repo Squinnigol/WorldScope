@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldScope</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/main.js"></script>
+</head>
+
+<body>
+    <header class="cabecera">
+
+        <a href="#/" class="logo">
+            <span aria-hidden="true">🌍</span> WorldScope
+        </a>
+
+        <div class="buscador">
+            <span aria-hidden="true">🔎</span>
+            <input type="search" id="buscador-header" placeholder="Buscar país..." aria-label="Buscar país"
+                autocomplete="off">
+            <ul id="resultados-header"></ul>
+        </div>
+        <nav>
+            <a href="#/comparar">Comparar</a>
+            <a href="#/favoritos"><span aria-hidden="true">★</span> Favoritos</a>
+        </nav>
+
+        <button type="button" id="boton-tema" aria-label="Cambiar tema">🌙</button>
+
+    </header>
+    <main>
+
+        <!-- Inicio -->
+
+        <section id="vista-inicio" class="vista">
+            <div class="inicio-portada">
+                <div class="inicio-texto">
+                    <h1>Explora el mundo en datos</h1>
+                    <p>217 países - 15 indicadores - datos del Banco Mundial</p>
+                    <div class="buscador buscador-grande">
+                        <span aria-hidden="true">🔎</span>
+                        <input type="search" id="buscador-inicio" placeholder="Buscar país..." aria-label="Buscar país"
+                            autocomplete="off">
+                        <ul id="resultados-inicio"></ul>
+                    </div>
+                </div>
+                <div id="globo" class="globo" aria-hidden="true"></div>
+
+            </div>
+            <div class="bloque">
+                <h2><span aria-hidden="true">★</span> Mis favoritos</h2>
+                <div id="favoritos-inicio"></div>
+            </div>
+            <div class="bloque">
+                <h2>Indicadores por categoría</h2>
+                <div id="categorias-inicio"></div>
+            </div>
+
+        </section>
+
+        <!--País (oculto)-->
+
+        <section id="vista-pais" class="vista" hidden>
+            <div id="contenido-pais"></div>
+        </section>
+
+        <!--Comparar(oculto)-->
+        <section id="vista-comparar" class="vista" hidden>
+            <h2>Comparar países</h2>
+            <div id="contenido-comparar"></div>
+        </section>
+
+        <!--Favoritos(oculto)-->
+        <section id="vista-favoritos" class="vista" hidden>
+            <h2><span aria-hidden="true">★</span> Mis favoritos</h2>
+            <div id="contenido-favoritos"></div>
+        </section>
+
+
+    </main>
+
+    <footer class="pie">
+        <p>Datos: <a href="https://data.worldbank.org" target="_blank" rel="noopener">Banco Mundial - World Development
+                Indicators</a></p>
+        <p>Imágenes de la Tierra: NASA Blue Marble</p>
+
+    </footer>
+
+</body>
+
+</html>
