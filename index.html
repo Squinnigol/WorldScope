@@ -8,6 +8,24 @@
     <script type="module" src="js/main.js"></script>
 </head>
 <body>
-    
+    <header class="cabecera">
+        
+        <a href="#/" class="logo">
+            <span aria-hidden="true">🌍</span> WorldScope
+        </a>
+        
+        <div class="buscador">
+            <span aria-hidden="true">🔎</span>
+            <input type="search" id="buscador-header" placeholder="Buscar país..." aria-label="Buscar país" autocomplete="off">
+            <ul id="resultados-header"></ul>
+        </div>
+        <nav>
+            <a href="#/comparar">Comparar</a>
+            <a href="#/favoritos"><span aria-hidden="true">★</span> Favoritos</a>
+        </nav>    
+        
+        <button type="button" id="boton-tema" aria-label="Cambiar tema">🌙</button>
+        
+    </header>
 </body>
 </html>
