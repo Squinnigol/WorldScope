@@ -233,6 +233,11 @@ main {
         background-position: 0 0;
     }
     to {
-        background-position: calc(var(--tam-globo) * 2) 0
+        background-position: calc(var(--tam-globo) * 2) 0;
     }
+}
+
+/* ---------- Tema oscuro para el globo que muestra la Tierra de noche-- */
+[data-tema="oscuro"] .globo {
+    background-image: url("../assets/img/earth-night.jpg");
 }
