@@ -25,7 +25,10 @@
 
 
 ### 01/11/2026
-- ...
+- CSS base: variables, tema claro/oscuro, cabecera responsive.
+- Globo CSS girando, versión de noche, halo de atmósfera.
+- Portada a pantalla completa con fondo de estrellas.
+- Siguiente paso: título, subtítulo y buscador dentro del globo con efecto cristal.
 
 
 
