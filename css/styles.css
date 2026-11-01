@@ -215,3 +215,24 @@ main {
         margin: 0 auto;
     }
 }
+
+/* ---------- Globo ---------- */
+.globo {
+    --tam-globo: 300px;
+
+    width: var(--tam-globo);
+    height: var(--tam-globo);
+    border-radius: 50%;
+    background-image: url("../assets/img/earth-blue-marble.jpg");
+    background-size: calc(var(--tam-globo) * 2) var(--tam-globo);
+    animation: girar 40s linear infinite;
+}
+
+@keyframes girar {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: calc(var(--tam-globo) * 2) 0
+    }
+}
