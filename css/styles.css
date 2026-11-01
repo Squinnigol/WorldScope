@@ -1,0 +1,217 @@
+/* ==========================================================
+   WorldScope - Estilos base
+   ========================================================== */
+
+/* ---------- Variables: tema claro (por defecto) ---------- */
+:root {
+    --color-fondo: #f4f6fb;
+    --color-superficie: #ffffff;
+    --color-texto: #1c2333;
+    --color-texto-suave: #5b6478;
+    --color-borde: #dde2ec;
+    --color-primario: #1f6feb;
+    --color-primario-suave: #e3edff;
+    --color-favorito: #f5b301;
+    --color-error: #d64545;
+
+    --sombra: 0 2px 8px rgba(20, 30, 60, 0.08);
+    --radio: 10px;
+    --espacio: 1rem;
+    --ancho-max: 1200px;
+    --alto-cabecera: 64px;
+
+    --fuente: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+    color-scheme: light;
+}
+
+/* ---------- Variables: tema oscuro ---------- */
+/* Se activa desde JS con <html data-tema="oscuro"> */
+[data-tema="oscuro"] {
+    --color-fondo: #0d1117;
+    --color-superficie: #161b22;
+    --color-texto: #e6edf3;
+    --color-texto-suave: #9aa4b2;
+    --color-borde: #2a313c;
+    --color-primario: #58a6ff;
+    --color-primario-suave: #1a2a40;
+    --color-favorito: #f8c843;
+    --color-error: #ff6b6b;
+
+    --sombra: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+    color-scheme: dark;
+}
+
+/* ---------- Reset y base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fuente);
+    line-height: 1.5;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: var(--color-primario);
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--ancho-max);
+    margin: 0 auto;
+    padding: calc(var(--espacio) * 2) var(--espacio);
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: var(--espacio);
+    min-height: var(--alto-cabecera);
+    padding: 0.5rem var(--espacio);
+    background-color: var(--color-superficie);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: var(--sombra);
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-texto);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.cabecera nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.cabecera nav a {
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radio);
+    color: var(--color-texto);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.cabecera nav a:hover,
+.cabecera nav a:focus-visible {
+    background-color: var(--color-primario-suave);
+    color: var(--color-primario);
+}
+
+#boton-tema {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 50%;
+    background-color: var(--color-fondo);
+    cursor: pointer;
+}
+
+#boton-tema:hover {
+    border-color: var(--color-primario);
+}
+
+/* ---------- Buscador (header e inicio) ---------- */
+.buscador {
+    position: relative;
+    flex: 1;
+    max-width: 420px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.8rem;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: 999px;
+}
+
+.buscador:focus-within {
+    border-color: var(--color-primario);
+}
+
+.buscador input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.5rem 0;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+/* Lista de resultados: oculta mientras esté vacía */
+.buscador ul {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0.3rem 0;
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.buscador ul:empty {
+    display: none;
+}
+
+/* ---------- Cabecera responsive ---------- */
+/* En móvil el buscador baja a una segunda línea a todo el ancho */
+@media (max-width: 700px) {
+    .cabecera {
+        flex-wrap: wrap;
+    }
+
+    .cabecera .buscador {
+        order: 3;
+        flex-basis: 100%;
+        max-width: none;
+    }
+
+    .cabecera nav {
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 701px) {
+    .cabecera .buscador {
+        margin: 0 auto;
+    }
+}
