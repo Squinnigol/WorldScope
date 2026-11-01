@@ -79,10 +79,21 @@ h3 {
 
 main {
     flex: 1;
+}
+
+/* Cada vista ocupa la columna central (como antes hacía main) */
+.vista,
+.bloque {
     width: 100%;
     max-width: var(--ancho-max);
     margin: 0 auto;
     padding: calc(var(--espacio) * 2) var(--espacio);
+}
+
+/* Excepción: la vista de inicio ocupa todo el ancho */
+#vista-inicio {
+    max-width: none;
+    padding: 0;
 }
 
 /* ---------- Cabecera ---------- */
@@ -244,4 +255,17 @@ main {
 /* ---------- Tema oscuro para el globo que muestra la Tierra de noche-- */
 [data-tema="oscuro"] .globo {
     background-image: url("../assets/img/earth-night.jpg");
+}
+
+/* ---------- Portada de inicio ---------- */
+.inicio-portada {
+    min-height: calc(100vh - var(--alto-cabecera));
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(circle at 20% 30%, white 1px, transparent 2px),
+        radial-gradient(circle at 70% 80%, white 1px, transparent 2px),
+        radial-gradient(circle at 45% 60%, rgba(255, 255, 255, 0.6) 1px, transparent 2px),
+        radial-gradient(ellipse at center, #13213d 0%, #060a14 70%);
+    background-size: 230px 230px, 310px 310px, 170px 170px, auto;
 }
