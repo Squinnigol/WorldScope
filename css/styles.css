@@ -226,12 +226,16 @@ main {
     background-image: url("../assets/img/earth-blue-marble.jpg");
     background-size: calc(var(--tam-globo) * 2) var(--tam-globo);
     animation: girar 40s linear infinite;
+    box-shadow:
+        inset -40px -20px 60px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(80, 160, 255, 0.5);
 }
 
 @keyframes girar {
     from {
         background-position: 0 0;
     }
+
     to {
         background-position: calc(var(--tam-globo) * 2) 0;
     }
