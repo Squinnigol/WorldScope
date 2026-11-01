@@ -218,7 +218,7 @@ main {
 
 /* ---------- Globo ---------- */
 .globo {
-    --tam-globo: 300px;
+    --tam-globo: min(90vw, 65vh);
 
     width: var(--tam-globo);
     height: var(--tam-globo);
