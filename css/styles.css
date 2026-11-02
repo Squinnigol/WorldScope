@@ -13,6 +13,7 @@
     --color-primario-suave: #e3edff;
     --color-favorito: #f5b301;
     --color-error: #d64545;
+    --color-cristal: rgba(255, 255, 255, 0.2);
 
     --sombra: 0 2px 8px rgba(20, 30, 60, 0.08);
     --radio: 10px;
@@ -37,6 +38,7 @@
     --color-primario-suave: #1a2a40;
     --color-favorito: #f8c843;
     --color-error: #ff6b6b;
+    --color-cristal: rgba(13, 17, 23, 0.45);
 
     --sombra: 0 2px 8px rgba(0, 0, 0, 0.4);
 
@@ -268,4 +270,44 @@ main {
         radial-gradient(circle at 45% 60%, rgba(255, 255, 255, 0.6) 1px, transparent 2px),
         radial-gradient(ellipse at center, #13213d 0%, #060a14 70%);
     background-size: 230px 230px, 310px 310px, 170px 170px, auto;
+}
+
+/*-------Capa sobre el globo (titulo y buscador)-------*/
+.globo-contenedor {
+    position: relative;
+}
+
+.globo-capa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 600px);
+    text-align: center;
+}
+
+.buscador-grande {
+    margin: 0 auto;
+    background-color: var(--color-cristal);
+    backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.35)
+    color: #ffffff;
+}
+
+.buscador-grande input::placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+.globo-capa h1,
+.globo-capa p {
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.globo-capa h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    margin: 0 0 0.5rem;
+}
+
+.globo-capa p {
+    margin: 0 0 1.5rem;
 }
