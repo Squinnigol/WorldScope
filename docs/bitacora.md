@@ -33,7 +33,9 @@
 
 
 ### 02/11/2026
-- ...
+- Titulo, subtitulo y buscador dentro del globo con efecto cristal.
+- Quitadas las lupas.
+- Ajustes de la barra de busqueda en el globo.
 
 
 ### 03/11/2026
