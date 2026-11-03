@@ -11,6 +11,15 @@ export class Serie {
         return ultimo.valor;
     }
 
+    ultimoAnio() {
+        if (this.puntos.length === 0) {
+            return null;
+        }
+        const ultimo = this.puntos[this.puntos.length - 1];
+        return ultimo.anio;
+    }
+
+
     valorEnAnio(anio) {
         const punto = this.puntos.find(p => p.anio === anio);
         if (punto === undefined) {

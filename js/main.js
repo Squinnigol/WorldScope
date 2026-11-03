@@ -14,3 +14,4 @@ const nacimientos = new IndicadorDerivado("NACIMIENTOS", "Nacimientos estimados"
 const serieNac = await nacimientos.obtenerSerie(api, "ESP");
 console.log("Nacimientos ESP:", serieNac.ultimoValor());
 console.log("Último punto:", serieNac.puntos[serieNac.puntos.length - 1]);
+console.log("Último año:", serieNac.ultimoAnio());
