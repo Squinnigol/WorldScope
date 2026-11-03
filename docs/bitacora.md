@@ -36,6 +36,7 @@
 - Titulo, subtitulo y buscador dentro del globo con efecto cristal.
 - Quitadas las lupas.
 - Ajustes de la barra de busqueda en el globo.
+- Rama `feature/api-worldbank`: clase `WorldBankAPI` con `pedir(ruta)` (fetch, control de errores, caché con `Map`), `obtenerPaises()` (217 países, filtrando agregados con `region.id !== "NA"`) y `obtenerIndicador(codigoPais, codigoIndicador)`.
 
 
 ### 03/11/2026
