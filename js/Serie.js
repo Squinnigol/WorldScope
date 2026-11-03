@@ -19,4 +19,11 @@ export class Serie {
         return punto.valor;
     }
 
+    anios() {
+        return this.puntos.map(p => p.anio);
+    }
+
+    valores() {
+        return this.puntos.map(p => p.valor);
+    }
 }
