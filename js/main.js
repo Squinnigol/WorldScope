@@ -23,3 +23,11 @@ function router() {
 
 window.addEventListener("hashchange", router);
 router();
+
+const botonArriba = document.querySelector("#boton-arriba");
+window.addEventListener("scroll", () => {
+    botonArriba.hidden = window.scrollY < 400;
+});
+botonArriba.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});

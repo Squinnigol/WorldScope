@@ -390,3 +390,27 @@ main {
 .tarjeta-error .tarjeta-valor {
     color: var(--color-error);
 }
+
+.boton-arriba {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-primario);
+    color: #fff;
+    font-size: 1.5rem;
+    box-shadow: var(--sombra);
+    cursor: pointer;
+    z-index: 100;
+}
+
+.boton-arriba:hover {
+    transform: translateY(-3px);
+}
+
+.boton-arriba[hidden] {
+    display: none;
+}
