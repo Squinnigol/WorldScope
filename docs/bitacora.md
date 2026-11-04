@@ -62,31 +62,24 @@
   - Números grandes abreviados (`notation: "compact"`): «2,25 billones».
   - Router mínimo en `main.js`: lee `#/pais/ITA` con el evento `hashchange`.
 - Limpieza de ramas ya fusionadas en GitHub y en local.
-- La entrega es el viernes 06/11 por la mañana: quedan la tarde/noche del 04/11 y el jueves 05/11 (ver «Pendiente»).
+- Corregido: volver a buscar el mismo país no hacía nada (el hash no cambiaba). Ahora se lanza el evento `hashchange` a mano con `dispatchEvent`.
+- Botón fijo «↑» abajo a la derecha: aparece al bajar más de 400 px (`scrollY`) y vuelve arriba con `scrollTo` suave.
+- Selector de año en la cabecera del país: barra deslizante (`<input type="range">`, 1960–2025), flechas ◀ ▶ y botón «Último». Las 15 tarjetas se actualizan al instante con `valorEnAnio` gracias a la caché de `WorldBankAPI`. Se probó primero un `<select>`, pero 66 años en una lista eran incómodos.
+- PR `feature/pagina-pais` → `dev` (#6).
+- Rama `feature/grafico`:
+  - Chart.js 4 por CDN.
+  - Nueva clase `Grafico`: dibuja una `Serie` como gráfico de líneas dentro de un `<dialog>` nativo (se cierra con ✕ o Esc, sin JavaScript gracias a `<form method="dialog">`).
+  - Clic en una tarjeta → evolución del indicador en todos los años, con un punto en el año elegido.
+  - Los colores se leen de las variables CSS (preparado para el tema oscuro).
+  - `Dashboard` recibe el `Grafico` desde `main.js` (composición).
 
-#### Pendiente, por orden de prioridad
-Rama actual: `feature/pagina-pais` (subida, sin PR todavía).
 
-**Tarde/noche del 04/11**
-1. Cerrar `feature/pagina-pais`: selector de año en la cabecera del país (las 15 tarjetas muestran el valor de ese año con `valorEnAnio`) · botón fijo «↑» abajo a la derecha (`window.scrollTo`) · arreglar que buscar el mismo país otra vez no hace nada (el hash no cambia) · PR → `dev`.
-2. `feature/grafico`: clic en una tarjeta → `<dialog>` con gráfico de líneas (Chart.js por CDN) y tabla del historial (año / valor) + exportar CSV.
 
-**Jueves 05/11 por la mañana**
-
-3. `feature/favoritos-tema`: clase `Preferencias` (localStorage): ★ en la cabecera del país, tema claro/oscuro con el botón 🌙.
-4. Router completo en `main.js`: `#/` inicio · `#/pais/XXX` · `#/favoritos` · `#/comparar` (mostrar una `<section>` y ocultar las demás). Vista Favoritos: tabla con los países guardados (clic → `#/pais/XXX`).
-
-**Jueves 05/11 a mediodía (límite: 15:00)**
-
-5. `feature/comparar` reducido: 2.ª instancia de `BuscadorPaises` + `<select>` de indicador + un gráfico con una línea por país.
-
-**Jueves 05/11 por la tarde**
-
-6. Pruebas de los criterios de aceptación y repaso responsive · README · memoria técnica (PDF) · GitHub Pages · PR `dev` → `main`.
-
-**Viernes 06/11**: entrega por la mañana y presentación.
-
-Recortado: mapa Leaflet, `MaquinaDeEscribir` (solo si sobra tiempo).
+#### Pendiente para el jueves 05/11
+1. `feature/preferencias`: clase `Preferencias` con `localStorage` → favoritos ★ en la cabecera del país, tema claro/oscuro con el botón 🌙 y último país visto.
+2. Router completo (`#/`, `#/pais/XXX`, `#/favoritos`) y vista Favoritos con una tabla de los países guardados. Si sobra tiempo, hacer el enlace «Comparar». `MaquinaDeEscribir` (solo si sobra tiempo).
+3. `feature/estilo-tarjetas`: colores y fondos de las tarjetas (después del tema, para probar los dos).
+4. Pruebas y repaso responsive · README · Memoria técnica (PDF) · GitHub Pages · PR `dev` → `main`. 
 
 
 
