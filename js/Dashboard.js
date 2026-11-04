@@ -10,6 +10,9 @@ export class Dashboard {
     
     mostrarPais(codigo) {
         const pais = this.paises.find(p => p.id === codigo);
+        this.codigo = codigo;
+        this.anio = null;
+        this.tarjetas = [];
         this.contenedor.innerHTML = "";
         this.contenedor.hidden = false;
         
@@ -32,7 +35,7 @@ export class Dashboard {
         const datos = document.createElement("p");
         datos.textContent = `${pais.region.value.trim()} - Capital: ${pais.capitalCity}`;
         
-        cabecera.append(bandera, titulo, datos);
+        cabecera.append(bandera, titulo, datos, this.crearSelectorAnio());
         this.contenedor.append(cabecera);
         
         let categoriaActual = "";
@@ -47,13 +50,75 @@ export class Dashboard {
                 this.contenedor.append(subtitulo, rejilla);
             }
             const tarjeta = this.crearTarjeta(indicador);
+            this.tarjetas.push({ tarjeta, indicador });
             rejilla.append(tarjeta);
             this.rellenarTarjeta(tarjeta, indicador, codigo);
         }
         
         this.contenedor.scrollIntoView({ behavior: "smooth" });
     }
-    
+
+    crearSelectorAnio() {
+        const anioMin = 1960;
+        const anioMax = new Date().getFullYear() - 1;
+
+        const panel = document.createElement("div");
+        panel.className = "selector-anio";
+
+        const etiqueta = document.createElement("span");
+        etiqueta.textContent = "Año:";
+
+        const anterior = this.crearBoton("◀", "Año anterior");
+        const textoAnio = document.createElement("strong");
+        textoAnio.textContent = "Último";
+        const siguiente = this.crearBoton("▶", "Año siguiente");
+        const ultimo = this.crearBoton("Último", "Último dato disponible");
+
+        const fila = document.createElement("div");
+        fila.className = "selector-anio-barra";
+        const barra = document.createElement("input");
+        barra.type = "range";
+        barra.min = anioMin;
+        barra.max = anioMax;
+        barra.value = anioMax;
+        barra.setAttribute("aria-label", "Año de los datos");
+        fila.append(anioMin, barra, anioMax);
+
+        const cambiarAnio = (anio) => {
+            this.anio = anio;
+            if (anio === null) {
+                textoAnio.textContent = "Último";
+                barra.value = anioMax;
+            } else {
+                textoAnio.textContent = anio;
+                barra.value = anio;
+            }
+            this.actualizarTarjetas();
+        };
+
+        barra.addEventListener("input", () => cambiarAnio(Number(barra.value)));
+        anterior.addEventListener("click", () => cambiarAnio(Math.max(anioMin, Number(barra.value) - 1)));
+        siguiente.addEventListener("click", () => cambiarAnio(Math.min(anioMax, Number(barra.value) + 1)));
+        ultimo.addEventListener("click", () => cambiarAnio(null));
+
+        panel.append(etiqueta, anterior, textoAnio, siguiente, ultimo, fila);
+        return panel;
+    }
+
+    crearBoton(texto, descripcion) {
+        const boton = document.createElement("button");
+        boton.type = "button";
+        boton.textContent = texto;
+        boton.setAttribute("aria-label", descripcion);
+        return boton;
+    }
+        
+    actualizarTarjetas() {
+        for (const elemento of this.tarjetas) {
+            this.rellenarTarjeta(elemento.tarjeta, elemento.indicador, this.codigo);
+        }
+    }
+
     crearTarjeta(indicador) {
         const tarjeta = document.createElement("article");
         tarjeta.className = "tarjeta";
