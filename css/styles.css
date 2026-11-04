@@ -203,6 +203,23 @@ main {
     display: none;
 }
 
+.buscador li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.9rem;
+    color: inherit;
+    text-decoration: none;
+}
+
+.buscador li:hover,
+.buscador li: a:focus {
+    background-color: var(--color-fondo);
+}
+.buscador li img {
+    border-radius: 2px;
+}
+
 /* ---------- Cabecera responsive ---------- */
 /* En móvil el buscador baja a una segunda línea a todo el ancho */
 @media (max-width: 700px) {
