@@ -20,8 +20,8 @@ export class WorldBankAPI {
         return datos[1].filter(pais => pais.region.id !=='NA');
     }
 
-    async obtenerIndicator(codigoPais, codigoIndicator) {
-        const datos = await this.pedir(`/country/${codigoPais}/indicator/${codigoIndicator}?format=json&per_page=300`);
+    async obtenerIndicador(codigoPais, codigoIndicador) {
+        const datos = await this.pedir(`/country/${codigoPais}/indicator/${codigoIndicador}?format=json&per_page=300`);
 
         return datos[1] ?? [];
     }

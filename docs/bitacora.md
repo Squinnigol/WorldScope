@@ -40,7 +40,14 @@
 
 
 ### 03/11/2026
-- ...
+- Renombrado `obtenerIndicator` → `obtenerIndicador` para mantener todo el código en español.
+- Rama `feature/modelo-indicadores`:
+  - Clase `Serie`: guarda los puntos `{anio, valor}` y ofrece `ultimoValor()`, `ultimoAnio()`, `valorEnAnio(anio)`, `anios()` y `valores()`. Devuelve `null` cuando no hay datos.
+  - Clase `Indicador` (código, nombre, categoría, unidad) con `obtenerSerie(api, codigoPais)`: pide los datos a `WorldBankAPI`, quita los años sin valor, convierte el año a número y ordena de antiguo a reciente.
+  - Clase `IndicadorDerivado` (`extends Indicador`): sobrescribe `obtenerSerie` para calcular población × tasa / 1000 (nacimientos y defunciones estimados). Comprobado con España: 317.517 nacimientos en 2024.
+  - `catalogo.js` iniciado (2 de 15 indicadores).
+- Pendiente: completar `catalogo.js` con los 15 indicadores del PDF.
+- Retraso respecto al plan: el MVP (buscador, página país) previsto para el 02/11 aún no está empezado.
 
 
 
