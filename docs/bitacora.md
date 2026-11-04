@@ -52,7 +52,41 @@
 
 
 ### 04/11/2026
-- ...
+- `catalogo.js` completado con los 15 indicadores del PDF (13 directos + 2 derivados). PR `feature/modelo-indicadores` → `dev`.
+- Rama `feature/buscador`: clase `BuscadorPaises` con banderas (flagcdn), máximo 8 resultados y búsqueda sin acentos (`normalize("NFD")`): «mexico» encuentra «México». PR → `dev`.
+- Cambio de diseño: un solo buscador dentro del globo (quitado el de la cabecera). Al elegir un país, los datos aparecen debajo del globo con desplazamiento suave. Favoritos y Comparar siguen como vistas aparte (`<section>` + enlaces con `#`).
+- Rama `feature/pagina-pais`:
+  - Clase `Dashboard`: cabecera del país (bandera, nombre, región, capital) y 15 tarjetas agrupadas por categoría.
+  - Las 15 peticiones se lanzan en paralelo; cada tarjeta se rellena al llegar sus datos.
+  - Estados: «Cargando…», «Sin datos» y «Error al cargar» (`try/catch`).
+  - Números grandes abreviados (`notation: "compact"`): «2,25 billones».
+  - Router mínimo en `main.js`: lee `#/pais/ITA` con el evento `hashchange`.
+- Limpieza de ramas ya fusionadas en GitHub y en local.
+- La entrega es el viernes 06/11 por la mañana: quedan la tarde/noche del 04/11 y el jueves 05/11 (ver «Pendiente»).
+
+#### Pendiente, por orden de prioridad
+Rama actual: `feature/pagina-pais` (subida, sin PR todavía).
+
+**Tarde/noche del 04/11**
+1. Cerrar `feature/pagina-pais`: selector de año en la cabecera del país (las 15 tarjetas muestran el valor de ese año con `valorEnAnio`) · botón fijo «↑» abajo a la derecha (`window.scrollTo`) · arreglar que buscar el mismo país otra vez no hace nada (el hash no cambia) · PR → `dev`.
+2. `feature/grafico`: clic en una tarjeta → `<dialog>` con gráfico de líneas (Chart.js por CDN) y tabla del historial (año / valor) + exportar CSV.
+
+**Jueves 05/11 por la mañana**
+
+3. `feature/favoritos-tema`: clase `Preferencias` (localStorage): ★ en la cabecera del país, tema claro/oscuro con el botón 🌙.
+4. Router completo en `main.js`: `#/` inicio · `#/pais/XXX` · `#/favoritos` · `#/comparar` (mostrar una `<section>` y ocultar las demás). Vista Favoritos: tabla con los países guardados (clic → `#/pais/XXX`).
+
+**Jueves 05/11 a mediodía (límite: 15:00)**
+
+5. `feature/comparar` reducido: 2.ª instancia de `BuscadorPaises` + `<select>` de indicador + un gráfico con una línea por país.
+
+**Jueves 05/11 por la tarde**
+
+6. Pruebas de los criterios de aceptación y repaso responsive · README · memoria técnica (PDF) · GitHub Pages · PR `dev` → `main`.
+
+**Viernes 06/11**: entrega por la mañana y presentación.
+
+Recortado: mapa Leaflet, `MaquinaDeEscribir` (solo si sobra tiempo).
 
 
 
