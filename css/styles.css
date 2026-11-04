@@ -212,10 +212,11 @@ main {
     text-decoration: none;
 }
 
-.buscador li:hover,
-.buscador li: a:focus {
+.buscador li a:hover,
+.buscador li a:focus {
     background-color: var(--color-fondo);
 }
+
 .buscador li img {
     border-radius: 2px;
 }
@@ -312,6 +313,7 @@ main {
 .buscador-grande input::placeholder {
     color: rgba(255, 255, 255, 0.75);
 }
+
 .globo-capa h1,
 .globo-capa p {
     color: #ffffff;
