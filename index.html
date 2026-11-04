@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorldScope</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
     <script type="module" src="js/main.js"></script>
 </head>
 
@@ -67,6 +68,18 @@
         <p>Imágenes de la Tierra: NASA Blue Marble</p>
 
     </footer>
+
+    <dialog id="dialogo-grafico" class="dialogo-grafico">
+        <div class="dialogo-cabecera">
+            <h2 class="dialogo-titulo"></h2>
+            <form method="dialog">
+                <button type="submit" aria-label="Cerrar">✕</button>
+            </form>
+        </div>
+        <div class="dialogo-lienzo">
+            <canvas></canvas>
+        </div>
+    </dialog>
 
     <button id="boton-arriba" class="boton-arriba" type="button" aria-label="Volver arriba" hidden>⬆</button>
 
