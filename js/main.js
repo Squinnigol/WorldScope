@@ -1,5 +1,7 @@
 import { WorldBankAPI } from './WorldBankAPI.js';
 import { BuscadorPaises } from './BuscadorPaises.js';
+import { Dashboard } from './Dashboard.js';
+import { catalogo } from './catalogo.js';
 
 const api = new WorldBankAPI();
 const paises = await api.obtenerPaises();
@@ -9,8 +11,15 @@ new BuscadorPaises(
     document.querySelector("#resultados-inicio"),
     paises
 );
-new BuscadorPaises(
-    document.querySelector("#buscador-header"),
-    document.querySelector("#resultados-header"),
-    paises
-);
+
+const dashboard = new Dashboard(document.querySelector("#pais-resultado"), api, paises, catalogo);
+
+function router() {
+    const partes = location.hash.split("/");
+    if (partes[1] === "pais") {
+        dashboard.mostrarPais(partes[2]);
+    }
+}
+
+window.addEventListener("hashchange", router);
+router();
