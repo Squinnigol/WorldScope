@@ -75,13 +75,28 @@
 
 
 
-#### Pendiente para el jueves 05/11
-1. `feature/preferencias`: clase `Preferencias` con `localStorage` → favoritos ★ en la cabecera del país, tema claro/oscuro con el botón 🌙 y último país visto.
-2. Router completo (`#/`, `#/pais/XXX`, `#/favoritos`) y vista Favoritos con una tabla de los países guardados. Si sobra tiempo, hacer el enlace «Comparar». `MaquinaDeEscribir` (solo si sobra tiempo).
-3. `feature/estilo-tarjetas`: colores y fondos de las tarjetas (después del tema, para probar los dos).
-4. Pruebas y repaso responsive · README · Memoria técnica (PDF) · GitHub Pages · PR `dev` → `main`. 
-
-
-
 ### 05/11/2026
-- ...
+- Rama `feature/favoritos` (PR #8):
+  - Clase `Favoritos`: guarda en `localStorage` solo los códigos de país (`["ITA", "ESP"]`) con `JSON.stringify` / `JSON.parse`. Métodos `contiene(codigo)` y `alternar(codigo)`. Se eligió el nombre `Favoritos` en lugar de `Preferencias` para que cada clase tenga una sola responsabilidad.
+  - Botón ☆/★ junto al nombre del país, con `aria-pressed` y `aria-label` (accesible con teclado y lector de pantalla).
+  - Router completo en `main.js`: `#/`, `#/pais/XXX` y `#/favoritos`. La función `mostrarVista(id)` muestra una sola `<section>` y oculta las demás.
+  - Nueva clase `VistaFavoritos`: tabla con bandera, nombre (enlace al país), región, capital y botón ✕ para quitarlo. Mensaje de ayuda si la lista está vacía.
+  - Desde Favoritos, el país se abre directamente, sin la animación de bajada desde el globo (`behavior: "instant"`). Desde el buscador se mantiene el desplazamiento suave.
+- Rama `feature/tema` (PR #9):
+  - Clase `Tema`: el botón 🌙/☀️ cambia el atributo `data-tema` de `<html>` y el CSS cambia todas las variables de color. La elección se guarda en `localStorage`.
+  - El logo vuelve al inicio y oculta el país anterior (nuevo método `Dashboard.ocultar()`).
+  - Cabecera en móvil (iPhone 16 Pro, 402 px): logo, menú y botón de tema en una sola línea. Por debajo de 380 px solo se ve 🌍 (con `aria-label` en el enlace). Borradas las reglas CSS del antiguo buscador de la cabecera.
+  - Contador de favoritos en el menú (★ Favoritos ③), que se actualiza al añadir o quitar un país.
+- Rama `feature/quitar-comparar` (PR #11): se descarta la vista Comparar por falta de tiempo. Se prioriza la documentación de la entrega.
+- Rama `feature/maquina-escribir` (PR #12): clase `MaquinaDeEscribir`. Nombres de países al azar se escriben y se borran solos en el *placeholder* del buscador (`setTimeout` recursivo). Se detiene al hacer clic en el campo (`clearTimeout`) y no se activa con `prefers-reduced-motion` (accesibilidad).
+
+#### Pendiente (obligatorio para la entrega del 06/11)
+1. Pruebas de los criterios de aceptación y repaso responsive.
+2. `README.md`: descripción, funcionalidades, tecnologías, estructura de clases, cómo usarlo y enlace a la web.
+3. GitHub Pages y PR final `dev` → `main`.
+4. Memoria técnica (PDF) con el registro del trabajo (Trello/bitácora).
+5. Ensayo de la presentación: clases, herencia, flujo de datos y decisiones de diseño.
+
+#### Mejoras visuales (solo si sobra tiempo, después de lo obligatorio)
+- Rediseñar el CSS del resto de la página (vista del país, tarjetas, Favoritos), sin tocar la portada del globo.
+- Fondo espacial en la vista del país: imagen del espacio con estrellas o estrellas fugaces animadas en CSS mientras se consultan los datos de las tarjetas. Debe respetar `prefers-reduced-motion` y funcionar en los dos temas.
