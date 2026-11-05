@@ -347,6 +347,25 @@ main {
     margin: 0;
 }
 
+
+.boton-favorito {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-texto-suave);
+    transition: transform 0.15s;
+}
+
+.boton-favorito[aria-pressed="true"] {
+    color: var(--color-favorito);
+}
+
+.boton-favorito:hover {
+    transform: scale(1.15);
+}
+
 .pais-cabecera p {
     flex-basis: 100%;
     margin: 0;
