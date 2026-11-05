@@ -39,8 +39,6 @@ function router() {
     } else if (partes[1] === "favoritos") {
         mostrarVista("vista-favoritos");
         vistaFavoritos.mostrar();
-    } else if (partes[1] === "comparar") {
-        mostrarVista("vista-comparar");
     } else {
         mostrarVista("vista-inicio");
         dashboard.ocultar();
