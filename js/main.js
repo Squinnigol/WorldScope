@@ -30,6 +30,7 @@ function mostrarVista(id) {
     for (const vista of vistas) {
         vista.hidden = vista.id !== id;
     }
+    document.body.dataset.vista = id;
     window.scrollTo(0, 0);
 }
 
