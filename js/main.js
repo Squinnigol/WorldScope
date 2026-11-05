@@ -6,6 +6,7 @@ import { Grafico } from './Grafico.js';
 import { Favoritos } from './Favoritos.js';
 import { VistaFavoritos } from './VistaFavoritos.js';
 import { Tema } from './Tema.js';
+import { MaquinaDeEscribir } from './MaquinaDeEscribir.js';
 
 const api = new WorldBankAPI();
 const favoritos = new Favoritos(document.querySelector("#contador-favoritos"));
@@ -17,6 +18,8 @@ new BuscadorPaises(
     document.querySelector("#resultados-inicio"),
     paises
 );
+
+new MaquinaDeEscribir(document.querySelector("#buscador-inicio"), paises.map(p => p.name));
 
 const grafico = new Grafico(document.querySelector("#dialogo-grafico"));
 const dashboard = new Dashboard(document.querySelector("#pais-resultado"), api, paises, catalogo, grafico, favoritos);
