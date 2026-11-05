@@ -10,6 +10,11 @@ export class Dashboard {
 
     }
 
+        ocultar() {
+        this.contenedor.innerHTML = "";
+        this.contenedor.hidden = true;
+    }
+
     mostrarPais(codigo, saltoDirecto) {
         const pais = this.paises.find(p => p.id === codigo);
         this.codigo = codigo;

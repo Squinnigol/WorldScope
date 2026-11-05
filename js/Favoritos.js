@@ -1,5 +1,6 @@
 export class Favoritos {
-    constructor() {
+    constructor(contador) {
+        this.contador = contador;
         this.clave = "worldscope-favoritos";
         const guardado = localStorage.getItem(this.clave);
         if (guardado === null) {
@@ -7,6 +8,7 @@ export class Favoritos {
         } else {
             this.lista = JSON.parse(guardado);
         }
+        this.actualizarContador();
     }
 
     guardar() {
@@ -24,5 +26,13 @@ export class Favoritos {
             this.lista.push(codigo);
         }
         this.guardar();
+        this.actualizarContador();
     }
+
+    actualizarContador() {
+        const total = this.lista.length;
+        this.contador.textContent = total;
+        this.contador.hidden = total === 0;
+    }
+
 }

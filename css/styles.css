@@ -124,6 +124,7 @@ main {
 .cabecera nav {
     display: flex;
     gap: 0.5rem;
+    margin-left: auto;
 }
 
 .cabecera nav a {
@@ -222,27 +223,46 @@ main {
 }
 
 /* ---------- Cabecera responsive ---------- */
-/* En móvil el buscador baja a una segunda línea a todo el ancho */
+/* En móvil: logo, menú y botón de tema en una sola línea */
 @media (max-width: 700px) {
     .cabecera {
-        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
     }
-    
-    .cabecera .buscador {
-        order: 3;
-        flex-basis: 100%;
-        max-width: none;
+
+    .logo {
+        font-size: 1rem;
     }
-    
-    .cabecera nav {
-        margin-left: auto;
+
+    .cabecera nav a {
+        padding: 0.4rem 0.4rem;
+        font-size: 0.9rem;
     }
 }
 
-@media (min-width: 701px) {
-    .cabecera .buscador {
-        margin: 0 auto;
+@media (max-width: 380px) {
+    .logo-texto {
+        display: none;
     }
+}
+
+/* ---------- Contador de favoritos ---------- */
+.contador {
+    display: inline-block;
+    min-width: 1.3rem;
+    padding: 0 0.35rem;
+    margin-left: 0.2rem;
+    border-radius: 999px;
+    background-color: var(--color-primario);
+    color: var(--color-superficie);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.3rem;
+    text-align: center;
+}
+
+.contador[hidden] {
+    display: none;
 }
 
 /* ---------- Globo ---------- */

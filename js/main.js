@@ -5,9 +5,11 @@ import { catalogo } from './catalogo.js';
 import { Grafico } from './Grafico.js';
 import { Favoritos } from './Favoritos.js';
 import { VistaFavoritos } from './VistaFavoritos.js';
+import { Tema } from './Tema.js';
 
 const api = new WorldBankAPI();
-const favoritos = new Favoritos();
+const favoritos = new Favoritos(document.querySelector("#contador-favoritos"));
+new Tema(document.querySelector("#boton-tema"));
 const paises = await api.obtenerPaises();
 
 new BuscadorPaises(
@@ -41,6 +43,7 @@ function router() {
         mostrarVista("vista-comparar");
     } else {
         mostrarVista("vista-inicio");
+        dashboard.ocultar();
     }
 }
 
