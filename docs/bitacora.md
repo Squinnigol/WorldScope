@@ -76,6 +76,9 @@
 
 
 ### 05/11/2026
+
+Dia:
+
 - Rama `feature/favoritos` (PR #8):
   - Clase `Favoritos`: guarda en `localStorage` solo los códigos de país (`["ITA", "ESP"]`) con `JSON.stringify` / `JSON.parse`. Métodos `contiene(codigo)` y `alternar(codigo)`. Se eligió el nombre `Favoritos` en lugar de `Preferencias` para que cada clase tenga una sola responsabilidad.
   - Botón ☆/★ junto al nombre del país, con `aria-pressed` y `aria-label` (accesible con teclado y lector de pantalla).
@@ -90,12 +93,27 @@
 - Rama `feature/quitar-comparar` (PR #11): se descarta la vista Comparar por falta de tiempo. Se prioriza la documentación de la entrega.
 - Rama `feature/maquina-escribir` (PR #12): clase `MaquinaDeEscribir`. Nombres de países al azar se escriben y se borran solos en el *placeholder* del buscador (`setTimeout` recursivo). Se detiene al hacer clic en el campo (`clearTimeout`) y no se activa con `prefers-reduced-motion` (accesibilidad).
 
+Tarde/noche:
+
+- Corregido: el *placeholder* de la máquina de escribir se cortaba con nombres largos ("República Checa"). El `<input>` no tenía ancho y usaba el del navegador (unos 20 caracteres). Con `flex: 1` ocupa todo el buscador.
+- `README.md` completo: qué se puede hacer, cómo probarlo, de dónde salen los datos, clases, la web de una sola página (router con el hash) y lo que se quedó fuera. Subido directamente a `dev` por ser solo documentación.
+- Rama `feature/estilo-cielo` (PR #13):
+  - Fondo de la página según el tema: cielo de día en el claro (`linear-gradient`) y espacio con estrellas en el oscuro (los mismos `radial-gradient` de la portada).
+  - En el tema claro, la parte baja de la portada pasa del espacio al cielo poco a poco, como al entrar en la atmósfera. El cielo empieza con el mismo color con el que acaba la portada (variable `--color-cielo`), así que no hay corte.
+  - Tarjetas, selector de año y tabla de Favoritos de cristal: fondo semitransparente (`--color-panel`) y `backdrop-filter: blur()`.
+  - Estrellas fugaces en el tema oscuro mientras se lee un país: `::before` y `::after` con `position: fixed` y `@keyframes`. Pasan por detrás de las tarjetas (`isolation: isolate` en `main`) y se apagan con `prefers-reduced-motion`.
+  - Cabecera azul cielo en el tema claro (`--color-cabecera`), con el texto oscuro para que se lea bien.
+  - Favoritos con un cielo más claro: `main.js` escribe `data-vista` en el `<body>` y el CSS lo usa, igual que `data-tema`.
+  - Pie de página con estilo propio y del mismo color en que termina el cielo (`--color-cielo-claro`).
+  - Corregido: los resultados del buscador salían subrayados. La regla estaba en el `<li>` y no en el `<a>`. Al moverla, el texto heredaba el blanco del buscador de cristal y no se veía, así que ahora usa `--color-texto`.
+  - Buscador con teclado: Intro abre el primer resultado y las flechas ↑ ↓ se mueven por la lista (`keydown`, `focus()`, `document.activeElement`).
+
 #### Pendiente (obligatorio para la entrega del 06/11)
 1. Pruebas de los criterios de aceptación y repaso responsive.
 2. `README.md`: descripción, funcionalidades, tecnologías, estructura de clases, cómo usarlo y enlace a la web.
 3. GitHub Pages y PR final `dev` → `main`.
-4. Memoria técnica (PDF) con el registro del trabajo (Trello/bitácora).
+4. Memoria técnica (PDF) con el registro del trabajo (Trello/bitácora).  !!! Todo hecho en PR #13 !!!
 
-#### Mejoras visuales (solo si sobra tiempo, después de lo obligatorio)
+#### Mejoras visuales 
 - Rediseñar el CSS del resto de la página (vista del país, tarjetas, Favoritos), sin tocar la portada del globo.
-- Fondo espacial en la vista del país: imagen del espacio con estrellas o estrellas fugaces animadas en CSS mientras se consultan los datos de las tarjetas.
+- Fondo espacial en la vista del país: imagen del espacio con estrellas o estrellas fugaces animadas en CSS mientras se consultan los datos de las tarjetas. !!! Hechos !!!
