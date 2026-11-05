@@ -3,8 +3,11 @@ import { BuscadorPaises } from './BuscadorPaises.js';
 import { Dashboard } from './Dashboard.js';
 import { catalogo } from './catalogo.js';
 import { Grafico } from './Grafico.js';
+import { Favoritos } from './Favoritos.js';
+import { VistaFavoritos } from './VistaFavoritos.js';
 
 const api = new WorldBankAPI();
+const favoritos = new Favoritos();
 const paises = await api.obtenerPaises();
 
 new BuscadorPaises(
@@ -14,12 +17,30 @@ new BuscadorPaises(
 );
 
 const grafico = new Grafico(document.querySelector("#dialogo-grafico"));
-const dashboard = new Dashboard(document.querySelector("#pais-resultado"), api, paises, catalogo, grafico);
+const dashboard = new Dashboard(document.querySelector("#pais-resultado"), api, paises, catalogo, grafico, favoritos);
+const vistaFavoritos = new VistaFavoritos(document.querySelector("#contenido-favoritos"), paises, favoritos);
+const vistas = document.querySelectorAll(".vista");
+
+function mostrarVista(id) {
+    for (const vista of vistas) {
+        vista.hidden = vista.id !== id;
+    }
+    window.scrollTo(0, 0);
+}
 
 function router() {
     const partes = location.hash.split("/");
     if (partes[1] === "pais") {
-        dashboard.mostrarPais(partes[2]);
+        const desdeOtraVista = document.querySelector("#vista-inicio").hidden;
+        mostrarVista("vista-inicio");
+        dashboard.mostrarPais(partes[2], desdeOtraVista);
+    } else if (partes[1] === "favoritos") {
+        mostrarVista("vista-favoritos");
+        vistaFavoritos.mostrar();
+    } else if (partes[1] === "comparar") {
+        mostrarVista("vista-comparar");
+    } else {
+        mostrarVista("vista-inicio");
     }
 }
 
