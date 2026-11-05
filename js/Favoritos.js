@@ -1,0 +1,38 @@
+export class Favoritos {
+    constructor(contador) {
+        this.contador = contador;
+        this.clave = "worldscope-favoritos";
+        const guardado = localStorage.getItem(this.clave);
+        if (guardado === null) {
+            this.lista = [];
+        } else {
+            this.lista = JSON.parse(guardado);
+        }
+        this.actualizarContador();
+    }
+
+    guardar() {
+        localStorage.setItem(this.clave, JSON.stringify(this.lista));
+    }
+
+    contiene(codigo) {
+        return this.lista.includes(codigo);
+    }
+
+    alternar(codigo) {
+        if (this.contiene(codigo)) {
+            this.lista = this.lista.filter(c => c !== codigo);
+        } else {
+            this.lista.push(codigo);
+        }
+        this.guardar();
+        this.actualizarContador();
+    }
+
+    actualizarContador() {
+        const total = this.lista.length;
+        this.contador.textContent = total;
+        this.contador.hidden = total === 0;
+    }
+
+}

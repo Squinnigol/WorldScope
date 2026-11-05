@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldScope</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script type="module" src="js/main.js"></script>
+</head>
+
+<body>
+    <header class="cabecera">
+
+        <a href="#/" class="logo" aria-label="WorldScope, inicio">
+            <span aria-hidden="true">🌍</span> <span class="logo-texto">WorldScope</span>
+        </a>
+
+        <nav>
+            <a href="#/favoritos"><span aria-hidden="true">★</span> Favoritos <span id="contador-favoritos" class="contador" hidden></span></a>
+        </nav>
+
+        <button type="button" id="boton-tema" aria-label="Cambiar tema">🌙</button>
+
+    </header>
+    <main>
+
+        <!-- Inicio -->
+
+        <section id="vista-inicio" class="vista">
+            <div class="inicio-portada">
+                <div class="globo-contenedor">
+                    <div id="globo" class="globo" aria-hidden="true"></div>
+                    <div class="globo-capa">
+                        <h1>Explora el mundo en datos</h1>
+                        <p>217 países - 15 indicadores - datos del Banco Mundial</p>
+                        <div class="buscador buscador-grande">
+                            <input type="search" id="buscador-inicio" placeholder="Buscar país..."
+                                aria-label="Buscar país" autocomplete="off">
+                            <ul id="resultados-inicio"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="pais-resultado" class="bloque" hidden></div>
+        </section>
+
+        <!--Favoritos(oculto)-->
+        <section id="vista-favoritos" class="vista" hidden>
+            <h2><span aria-hidden="true">★</span> Favoritos</h2>
+            <div id="contenido-favoritos"></div>
+        </section>
+
+
+    </main>
+
+    <footer class="pie">
+        <p>Datos: <a href="https://data.worldbank.org" target="_blank" rel="noopener">Banco Mundial - World Development
+                Indicators</a></p>
+        <p>Imágenes de la Tierra: NASA Blue Marble</p>
+
+    </footer>
+
+    <dialog id="dialogo-grafico" class="dialogo-grafico">
+        <div class="dialogo-cabecera">
+            <h2 class="dialogo-titulo"></h2>
+            <form method="dialog">
+                <button type="submit" aria-label="Cerrar">✕</button>
+            </form>
+        </div>
+        <div class="dialogo-lienzo">
+            <canvas></canvas>
+        </div>
+    </dialog>
+
+    <button id="boton-arriba" class="boton-arriba" type="button" aria-label="Volver arriba" hidden>⬆</button>
+
+</body>
+
+</html>

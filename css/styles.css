@@ -1,0 +1,709 @@
+/* ==========================================================
+WorldScope - Estilos base
+========================================================== */
+
+/* ---------- Variables: tema claro (por defecto) ---------- */
+:root {
+    --color-fondo: #f4f6fb;
+    --color-superficie: #ffffff;
+    --color-texto: #1c2333;
+    --color-texto-suave: #5b6478;
+    --color-borde: #dde2ec;
+    --color-primario: #1f6feb;
+    --color-primario-suave: #e3edff;
+    --color-favorito: #f5b301;
+    --color-error: #d64545;
+    --color-cristal: rgba(255, 255, 255, 0.2);
+    --color-panel: rgba(255, 255, 255, 0.75);
+    --color-atmosfera: #1e4f8f;
+    --color-cielo: #6fb4ee;
+    --color-cielo-claro: #eef7fd;
+    
+    --sombra: 0 2px 8px rgba(20, 30, 60, 0.08);
+    --radio: 10px;
+    --espacio: 1rem;
+    --ancho-max: 1200px;
+    --alto-cabecera: 64px;
+    
+    --fuente: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    
+    color-scheme: light;
+}
+
+/* ---------- Variables: tema oscuro ---------- */
+/* Se activa desde JS con <html data-tema="oscuro"> */
+[data-tema="oscuro"] {
+    --color-fondo: #0d1117;
+    --color-superficie: #161b22;
+    --color-texto: #e6edf3;
+    --color-texto-suave: #9aa4b2;
+    --color-borde: #2a313c;
+    --color-primario: #58a6ff;
+    --color-primario-suave: #1a2a40;
+    --color-favorito: #f8c843;
+    --color-error: #ff6b6b;
+    --color-cristal: rgba(13, 17, 23, 0.45);
+    --color-panel: rgba(22, 27, 34, 0.7);
+    --color-atmosfera: transparent;
+    --color-cielo: transparent;
+    --color-cielo-claro: #060a14;
+    
+    --sombra: 0 2px 8px rgba(0, 0, 0, 0.4);
+    
+    color-scheme: dark;
+}
+
+/* ---------- Reset y base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fuente);
+    line-height: 1.5;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: var(--color-primario);
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+main {
+    flex: 1;
+}
+
+/* Cada vista ocupa la columna central (como antes hacía main) */
+.vista,
+.bloque {
+    width: 100%;
+    max-width: var(--ancho-max);
+    margin: 0 auto;
+    padding: calc(var(--espacio) * 2) var(--espacio);
+}
+
+/* Excepción: la vista de inicio ocupa todo el ancho */
+#vista-inicio {
+    max-width: none;
+    padding: 0;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: var(--espacio);
+    min-height: var(--alto-cabecera);
+    padding: 0.5rem var(--espacio);
+    background-color: var(--color-superficie);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: var(--sombra);
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-texto);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.cabecera nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.cabecera nav a {
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radio);
+    color: var(--color-texto);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.cabecera nav a:hover,
+.cabecera nav a:focus-visible {
+    background-color: var(--color-primario-suave);
+    color: var(--color-primario);
+}
+
+#boton-tema {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 50%;
+    background-color: var(--color-fondo);
+    cursor: pointer;
+}
+
+#boton-tema:hover {
+    border-color: var(--color-primario);
+}
+
+/* ---------- Buscador (header e inicio) ---------- */
+.buscador {
+    position: relative;
+    flex: 1;
+    max-width: 420px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.8rem;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: 999px;
+}
+
+.buscador:focus-within {
+    border-color: var(--color-primario);
+}
+
+.buscador input {
+    min-width: 0;
+    padding: 0.5rem 0;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+    flex: 1;
+}
+
+/* Lista de resultados: oculta mientras esté vacía */
+.buscador ul {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0.3rem 0;
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.buscador ul:empty {
+    display: none;
+}
+
+.buscador li a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.9rem;
+    color: var(--color-texto);
+    text-decoration: none;
+}
+
+.buscador li a:hover,
+.buscador li a:focus {
+    background-color: var(--color-fondo);
+}
+
+.buscador li img {
+    border-radius: 2px;
+}
+
+/* ---------- Cabecera responsive ---------- */
+/* En móvil: logo, menú y botón de tema en una sola línea */
+@media (max-width: 700px) {
+    .cabecera {
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .cabecera nav a {
+        padding: 0.4rem 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .logo-texto {
+        display: none;
+    }
+}
+
+/* ---------- Contador de favoritos ---------- */
+.contador {
+    display: inline-block;
+    min-width: 1.3rem;
+    padding: 0 0.35rem;
+    margin-left: 0.2rem;
+    border-radius: 999px;
+    background-color: var(--color-primario);
+    color: var(--color-superficie);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.3rem;
+    text-align: center;
+}
+
+.contador[hidden] {
+    display: none;
+}
+
+/* ---------- Globo ---------- */
+.globo {
+    --tam-globo: min(90vw, 65vh);
+    
+    width: var(--tam-globo);
+    height: var(--tam-globo);
+    border-radius: 50%;
+    background-image: url("../assets/img/earth-blue-marble.jpg");
+    background-size: calc(var(--tam-globo) * 2) var(--tam-globo);
+    animation: girar 40s linear infinite;
+    box-shadow:
+    inset -40px -20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(80, 160, 255, 0.5);
+}
+
+@keyframes girar {
+    from {
+        background-position: 0 0;
+    }
+    
+    to {
+        background-position: calc(var(--tam-globo) * 2) 0;
+    }
+}
+
+/* ---------- Tema oscuro para el globo que muestra la Tierra de noche-- */
+[data-tema="oscuro"] .globo {
+    background-image: url("../assets/img/earth-night.jpg");
+}
+
+/* ---------- Portada de inicio ---------- */
+.inicio-portada {
+    min-height: calc(100vh - var(--alto-cabecera));
+    display: grid;
+    place-items: center;
+    background:
+    linear-gradient(to bottom, transparent 60%, var(--color-atmosfera) 85%, var(--color-cielo) 100%),
+    radial-gradient(circle at 20% 30%, white 1px, transparent 2px),
+    radial-gradient(circle at 70% 80%, white 1px, transparent 2px),
+    radial-gradient(circle at 45% 60%, rgba(255, 255, 255, 0.6) 1px, transparent 2px),
+    radial-gradient(ellipse at center, #13213d 0%, #060a14 70%);
+    background-size: auto, 230px 230px, 310px 310px, 170px 170px, auto;
+}
+
+/*-------Capa sobre el globo (titulo y buscador)-------*/
+.globo-contenedor {
+    position: relative;
+}
+
+.globo-capa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+}
+
+.buscador-grande {
+    margin: 0 auto;
+    background-color: var(--color-cristal);
+    backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+}
+
+.buscador-grande input::placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.globo-capa h1,
+.globo-capa p {
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.globo-capa h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    margin: 0 0 0.5rem;
+}
+
+.globo-capa p {
+    margin: 0 0 1.5rem;
+}
+
+/* ---------- Resultado del país ---------- */
+.pais-cabecera {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin: 2rem 0 1rem;
+}
+
+.pais-cabecera img {
+    border-radius: 4px;
+    box-shadow: var(--sombra);
+}
+
+.pais-cabecera h2 {
+    margin: 0;
+}
+
+
+.boton-favorito {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-texto-suave);
+    transition: transform 0.15s;
+}
+
+.boton-favorito[aria-pressed="true"] {
+    color: var(--color-favorito);
+}
+
+.boton-favorito:hover {
+    transform: scale(1.15);
+}
+
+.pais-cabecera p {
+    flex-basis: 100%;
+    margin: 0;
+    color: var(--color-texto-suave);
+}
+
+.selector-anio {
+    flex-basis: 100%;
+    max-width: 32rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background: var(--color-panel);
+    backdrop-filter: blur(8px);
+}
+
+.selector-anio strong {
+    min-width: 4.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.selector-anio button {
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    font: inherit;
+    cursor: pointer;
+}
+
+.selector-anio button:hover {
+    border-color: var(--color-primario);
+}
+
+.selector-anio-barra {
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-texto-suave);
+    font-size: 0.85rem;
+}
+
+.selector-anio-barra input {
+    flex: 1;
+    accent-color: var(--color-primario);
+    cursor: pointer;
+}
+
+
+.rejilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.tarjeta {
+    padding: 1rem;
+    background-color: var(--color-panel);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.tarjeta h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    color: var(--color-texto-suave);
+}
+
+.tarjeta-valor {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    overflow-wrap: anywhere;
+}
+
+.tarjeta-detalle {
+    margin: 0.3rem 0 0;
+    font-size: 0.85rem;
+    color: var(--color-texto-suave);
+}
+
+.tarjeta-error .tarjeta-valor {
+    color: var(--color-error);
+}
+
+.boton-arriba {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-primario);
+    color: #fff;
+    font-size: 1.5rem;
+    box-shadow: var(--sombra);
+    cursor: pointer;
+    z-index: 100;
+}
+
+.boton-arriba:hover {
+    transform: translateY(-3px);
+}
+
+.boton-arriba[hidden] {
+    display: none;
+}
+
+/* ===== Ventana del gráfico ===== */
+.dialogo-grafico {
+    width: min(900px, 95vw);
+    padding: 1rem 1.5rem 1.5rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background: var(--color-superficie);
+    color: var(--color-texto);
+    box-shadow: var(--sombra);
+}
+
+.dialogo-grafico::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.dialogo-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dialogo-titulo {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.dialogo-cabecera button {
+    border: none;
+    background: none;
+    color: var(--color-texto-suave);
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.dialogo-lienzo {
+    position: relative;
+    height: min(400px, 60vh);
+    margin-top: 1rem;
+}
+
+.tarjeta {
+    cursor: pointer;
+}
+
+.tarjeta:hover {
+    border-color: var(--color-primario);
+}
+
+.tabla-favoritos {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-panel);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+.tabla-favoritos th,
+.tabla-favoritos td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla-favoritos th {
+    background: var(--color-primario-suave);
+}
+
+.tabla-favoritos img {
+    display: block;
+    border-radius: 2px;
+}
+
+.boton-quitar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--color-texto-suave);
+}
+
+.boton-quitar:hover {
+    color: var(--color-error);
+}
+
+/* ---------- Fondo de la página: cielo (claro) y espacio (oscuro) ---------- */
+main {
+    background: linear-gradient(180deg, var(--color-cielo) calc(100vh - var(--alto-cabecera)),
+    #b9def8 calc(100vh + 300px),
+    #eef7fd calc(100vh + 900px));
+    isolation: isolate;
+    
+    [data-vista="vista-favoritos"] main {
+        background: linear-gradient(180deg, #b9def8, var(--color-cielo-claro));
+    }
+    
+}
+[data-tema="oscuro"] main {
+    background:
+    radial-gradient(circle at 20% 30%, white 1px, transparent 2px),
+    radial-gradient(circle at 70% 80%, white 1px, transparent 2px),
+    radial-gradient(circle at 45% 60%, rgba(255, 255, 255, 0.6) 1px, transparent 2px),
+    #060a14;
+    background-size: 230px 230px, 310px 310px, 170px 170px, auto;
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+    padding: 1.5rem var(--espacio);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+    background-color: var(--color-cielo-claro);
+}
+
+.pie p {
+    margin: 0.25rem 0;
+}
+
+/* ---------- Estrellas fugaces (tema oscuro, ficha del país) ---------- */
+[data-tema="oscuro"] #pais-resultado::before,
+[data-tema="oscuro"] #pais-resultado::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    top: 15%;
+    left: 75%;
+    width: 150px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(to right, white, transparent);
+    opacity: 0;
+    pointer-events: none;
+    animation: estrella-fugaz 7s linear infinite;
+}
+
+[data-tema="oscuro"] #pais-resultado::after {
+    top: 45%;
+    left: 45%;
+    width: 100px;
+    animation-duration: 11s;
+    animation-delay: 4s;
+}
+
+@keyframes estrella-fugaz {
+    0% {
+        opacity: 0;
+        transform: rotate(-30deg) translateX(0);
+    }
+    2% {
+        opacity: 1;
+    }
+    10% {
+        opacity: 0;
+        transform: rotate(-30deg) translateX(-400px);
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(-30deg) translateX(-400px);
+    }
+}
+
+/* ---------- Títulos de categoría ---------- */
+.categoria-titulo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-texto);
+}
+
+.categoria-titulo::before,
+.categoria-titulo::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    border-radius: 999px;
+}
+
+.categoria-titulo::before {
+    background: linear-gradient(to right, transparent, var(--color-primario));
+}
+
+.categoria-titulo::after {
+    background: linear-gradient(to left, transparent, var(--color-primario));
+}
