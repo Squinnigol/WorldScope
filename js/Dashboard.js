@@ -10,7 +10,7 @@ export class Dashboard {
 
     }
 
-    mostrarPais(codigo) {
+    mostrarPais(codigo, saltoDirecto) {
         const pais = this.paises.find(p => p.id === codigo);
         this.codigo = codigo;
         this.pais = pais;
@@ -68,7 +68,11 @@ export class Dashboard {
             this.rellenarTarjeta(tarjeta, indicador, codigo);
         }
 
-        this.contenedor.scrollIntoView({ behavior: "smooth" });
+        let comportamiento = "smooth";
+        if (saltoDirecto) {
+            comportamiento = "instant";
+        }
+        this.contenedor.scrollIntoView({ behavior: comportamiento });
     }
 
     crearSelectorAnio() {
