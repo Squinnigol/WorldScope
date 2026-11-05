@@ -124,6 +124,7 @@ main {
 .cabecera nav {
     display: flex;
     gap: 0.5rem;
+    margin-left: auto;
 }
 
 .cabecera nav a {
@@ -222,26 +223,27 @@ main {
 }
 
 /* ---------- Cabecera responsive ---------- */
-/* En móvil el buscador baja a una segunda línea a todo el ancho */
+/* En móvil: logo, menú y botón de tema en una sola línea */
 @media (max-width: 700px) {
     .cabecera {
-        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
     }
-    
-    .cabecera .buscador {
-        order: 3;
-        flex-basis: 100%;
-        max-width: none;
-    }
-    
-    .cabecera nav {
-        margin-left: auto;
+
+    @media (max-width: 380px) {
+    .logo-texto {
+        display: none;
     }
 }
 
-@media (min-width: 701px) {
-    .cabecera .buscador {
-        margin: 0 auto;
+    .logo {
+        font-size: 1rem;
+    }
+
+    
+    .cabecera nav a {
+        padding: 0.4rem 0.4rem;
+        font-size: 0.9rem;
     }
 }
 
