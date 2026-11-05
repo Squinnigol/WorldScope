@@ -181,6 +181,7 @@ main {
     background: transparent;
     border: none;
     outline: none;
+    flex: 1;
 }
 
 /* Lista de resultados: oculta mientras esté vacía */
