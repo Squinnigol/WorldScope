@@ -34,7 +34,7 @@ function router() {
         const desdeOtraVista = document.querySelector("#vista-inicio").hidden;
         mostrarVista("vista-inicio");
         dashboard.mostrarPais(partes[2], desdeOtraVista);
-        } else if (partes[1] === "favoritos") {
+    } else if (partes[1] === "favoritos") {
         mostrarVista("vista-favoritos");
         vistaFavoritos.mostrar();
     } else if (partes[1] === "comparar") {
