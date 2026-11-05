@@ -11,8 +11,9 @@ Es mi proyecto individual del curso. Está hecho con HTML, CSS y JavaScript, sin
 - Moverse por los años con una barra (de 1960 al año pasado) o volver al último dato disponible de cada indicador con el botón "Último".
 - Pulsar cualquier tarjeta para ver su evolución en un gráfico, con el año elegido marcado.
 - Guardar países en favoritos y verlos todos juntos en una tabla.
-- Cambiar entre tema claro y tema oscuro. La web recuerda la elección.
+- Cambiar entre tema claro y tema oscuro. En el claro la ficha del país aparece sobre un cielo de día y en el oscuro sobre el espacio, con alguna estrella fugaz. La web recuerda la elección.
 - El buscador encuentra el país aunque no escribas las tildes ("republica" encuentra "República Checa").
+- El buscador se puede usar solo con el teclado: Intro abre el primer resultado y las flechas se mueven por la lista.
 - Un contador junto a Favoritos indica cuántos países tienes guardados.
 - Un botón para volver arriba aparece al bajar por la página.
 - Funciona también en el móvil, y la animación del buscador se desactiva si el sistema pide reducir el movimiento.
@@ -59,7 +60,7 @@ Las clases principales:
 - `Serie`: guarda los datos de un indicador año por año y permite pedir el último valor, el valor de un año concreto o la lista de años y valores para el gráfico.
 - `catalogo.js`: la lista de los 15 indicadores.
 - `Dashboard`: monta la ficha del país, el selector de año y el botón de favorito.
-- `BuscadorPaises`: el buscador con sugerencias.
+- `BuscadorPaises`: el buscador con sugerencias, que se usa con el ratón o con el teclado.
 - `Grafico`: la ventana con el gráfico.
 - `Favoritos` y `VistaFavoritos`: guardan los favoritos en `localStorage` y los muestran.
 - `Tema`: el cambio de tema claro/oscuro.

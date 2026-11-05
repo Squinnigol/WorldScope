@@ -95,7 +95,6 @@
 2. `README.md`: descripción, funcionalidades, tecnologías, estructura de clases, cómo usarlo y enlace a la web.
 3. GitHub Pages y PR final `dev` → `main`.
 4. Memoria técnica (PDF) con el registro del trabajo (Trello/bitácora).
-5. Ensayo de la presentación: clases, herencia, flujo de datos y decisiones de diseño.
 
 #### Mejoras visuales (solo si sobra tiempo, después de lo obligatorio)
 - Rediseñar el CSS del resto de la página (vista del país, tarjetas, Favoritos), sin tocar la portada del globo.

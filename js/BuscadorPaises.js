@@ -4,6 +4,8 @@ export class BuscadorPaises {
         this.lista = lista;
         this.paises = paises;
         this.input.addEventListener("input", () => this.buscar());
+        this.input.addEventListener("keydown", (evento) => this.tecladoInput(evento));
+        this.lista.addEventListener("keydown", (evento) => this.tecladoLista(evento));
     }
     
     normalizar(texto) {
@@ -24,6 +26,38 @@ export class BuscadorPaises {
         .filter(p => this.normalizar(p.name).includes(texto))
         .slice(0, 8);
         this.mostrar(resultados);
+    }
+    
+    tecladoInput(evento) {
+        const enlaces = this.lista.querySelectorAll("a");
+        if (enlaces.length === 0) {
+            return;
+        }
+        if (evento.key === "Enter") {
+            enlaces[0].click();
+        } else if (evento.key === "ArrowDown") {
+            evento.preventDefault();
+            enlaces[0].focus();
+        }
+    }
+
+        tecladoLista(evento) {
+        const enlaces = [...this.lista.querySelectorAll("a")];
+        const posicion = enlaces.indexOf(document.activeElement);
+
+        if (evento.key === "ArrowDown") {
+            evento.preventDefault();
+            if (posicion < enlaces.length - 1) {
+                enlaces[posicion + 1].focus();
+            }
+        } else if (evento.key === "ArrowUp") {
+            evento.preventDefault();
+            if (posicion === 0) {
+                this.input.focus();
+            } else {
+                enlaces[posicion - 1].focus();
+            }
+        }
     }
     
     mostrar(resultados) {
