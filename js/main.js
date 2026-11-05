@@ -43,6 +43,7 @@ function router() {
         mostrarVista("vista-comparar");
     } else {
         mostrarVista("vista-inicio");
+        dashboard.ocultar();
     }
 }
 
