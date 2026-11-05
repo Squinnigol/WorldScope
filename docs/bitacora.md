@@ -98,4 +98,4 @@
 
 #### Mejoras visuales (solo si sobra tiempo, después de lo obligatorio)
 - Rediseñar el CSS del resto de la página (vista del país, tarjetas, Favoritos), sin tocar la portada del globo.
-- Fondo espacial en la vista del país: imagen del espacio con estrellas o estrellas fugaces animadas en CSS mientras se consultan los datos de las tarjetas. Debe respetar `prefers-reduced-motion` y funcionar en los dos temas.
+- Fondo espacial en la vista del país: imagen del espacio con estrellas o estrellas fugaces animadas en CSS mientras se consultan los datos de las tarjetas.
