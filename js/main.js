@@ -8,7 +8,7 @@ import { VistaFavoritos } from './VistaFavoritos.js';
 import { Tema } from './Tema.js';
 
 const api = new WorldBankAPI();
-const favoritos = new Favoritos();
+const favoritos = new Favoritos(document.querySelector("#contador-favoritos"));
 new Tema(document.querySelector("#boton-tema"));
 const paises = await api.obtenerPaises();
 
